@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue Test</title>
+</head>
+
+<body>
+
+	<!-- View -->
+    <div id="app">
+    	<!-- Binds heading tag to message property -->
+    	<h1> {{ message }} </h1>
+
+		<!-- Directive:  bind the value of the input into message property -->
+    	<input v-model="message">
+
+    	<pre>
+    	<!-- data object into json -->
+    		{{ $data | json}}
+    	</pre>
+    </div>
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.min.js"></script>
+    
+    <script>
+
+    	// View Model
+    	new Vue({
+    		// Binds it to an element
+    		el: '#app',
+    		data:{
+    			message: 'Hello World'
+    		}
+    	});
+    </script>
+</body>
+</html>
