@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Vue App</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="app">
+
+        <counter heading="Likes"></counter>
+
+        <counter heading="Dislikes"></counter>
+
+    </div>
+
+    <template id="counter-template">
+
+        <h1> {{ heading }}</h1>
+
+        <button @click="count +=1">{{ count }}</button>
+
+    </template>
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>
+    <script>
+
+
+    // Global component
+    Vue.component('counter', {
+
+        template: '#counter-template',
+
+        // Properties
+        props: ['heading'],
+
+        data: function() {
+            return { count: 0 };
+        }
+    });
+
+
+
+    // View Model
+    new Vue({
+        // Binds it to an element and root view instance
+        el: '#app',
+
+    });
+    </script>
+</body>
+
+</html>
