@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue Test</title>
+    <style>
+.plan {
+    padding: 0.5em 0;
+}
+
+.plan-name {
+    display: inline-block;
+    width: 6em;
+}
+
+.plan-price {
+    display: inline-block;
+    width: 6em;
+}
+</style>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="app"  v-for="plan in plans">
+        <plan :plan="plan" :active.sync="active">
+</div>
+
+
+<template id="plan-template">
+    <div>
+        <span class="plan-name">{{ plan.name }}</span>
+
+        <span class="plan-price">${{ plan.price }}/month</span>
+
+        <span v-show="isActive">
+            Current plan
+        </span>
+
+        <span v-else>
+            <button @click="setActivePlan">
+                {{ isUpgrade ? 'Upgrade' : 'Downgrade' }}
+            </button>
+        </span>
+    </div>
+</template>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.min.js"></script>
+    <script>
+    // View Model
+   new Vue({
+    el: '#app',
+
+    data: {
+        plans: [
+            { name: "Enterprise", price: 100 },
+            { name: "Professional", price: 50 },
+            { name: "Starter", price: 25 },
+            { name: "Free", price: 0 }
+        ],
+        active: {}
+    },
+
+    components: {
+        plan: {
+            template: '#plan-template',
+
+            props: ['plan', 'active'],
+
+            computed: {
+                isActive: function () {
+                    return this.plan.name == this.active.name;
+                },
+
+                isUpgrade: function () {
+                    return this.plan.price > this.active.price;
+                }
+            },
+
+            methods: {
+                setActivePlan: function () {
+                    this.active = this.plan;
+                }
+            }
+
+        }
+    }
+});
+    </script>
+</body>
+
+</html>
