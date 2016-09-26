@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue Test</title>
+</head>
+
+<body>
+    <!-- View -->
+        <h1>{{ fullName}}</h1>
+        <input type="text" v-model="first">
+        <input type="text" v-model="last">
+
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.min.js"></script>
+
+    <script>
+
+        // View Model
+        new Vue({
+            // Binds it to an element
+            el: 'body',
+            data:{
+                first: 'Andrew',
+                last: 'Caulfield'
+            },
+            computed: {
+                fullName: function() {
+                    return this.first + ' ' + this.last;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
